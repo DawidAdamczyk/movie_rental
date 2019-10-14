@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -45,6 +47,41 @@ class Movie
      * @ORM\Column(type="binary", nullable=true)
      */
     private $picture;
+
+    /**
+     * @ORM\Column(type="smallint")
+     */
+    private $duration;
+
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
+    private $country;
+
+    /**
+     * @ORM\Column(type="string", length=500, nullable=true)
+     */
+    private $description;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $price_day;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $price_seanse;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Loan", mappedBy="movie", orphanRemoval=true)
+     */
+    private $loans;
+
+    public function __construct()
+    {
+        $this->loans = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -119,6 +156,97 @@ class Movie
     public function setPicture($picture): self
     {
         $this->picture = $picture;
+
+        return $this;
+    }
+
+    public function getDuration(): ?int
+    {
+        return $this->duration;
+    }
+
+    public function setDuration(int $duration): self
+    {
+        $this->duration = $duration;
+
+        return $this;
+    }
+
+    public function getCountry(): ?string
+    {
+        return $this->country;
+    }
+
+    public function setCountry(?string $country): self
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getPriceDay(): ?float
+    {
+        return $this->price_day;
+    }
+
+    public function setPriceDay(float $price_day): self
+    {
+        $this->price_day = $price_day;
+
+        return $this;
+    }
+
+    public function getPriceSeanse(): ?float
+    {
+        return $this->price_seanse;
+    }
+
+    public function setPriceSeanse(float $price_seanse): self
+    {
+        $this->price_seanse = $price_seanse;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Loan[]
+     */
+    public function getLoans(): Collection
+    {
+        return $this->loans;
+    }
+
+    public function addLoan(Loan $loan): self
+    {
+        if (!$this->loans->contains($loan)) {
+            $this->loans[] = $loan;
+            $loan->setMovie($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLoan(Loan $loan): self
+    {
+        if ($this->loans->contains($loan)) {
+            $this->loans->removeElement($loan);
+            // set the owning side to null (unless already changed)
+            if ($loan->getMovie() === $this) {
+                $loan->setMovie(null);
+            }
+        }
 
         return $this;
     }
