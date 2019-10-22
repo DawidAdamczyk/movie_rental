@@ -3,10 +3,16 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}<link href="{{ asset('css/navbar.css') }}" rel="stylesheet"/>{% endblock %}
+        <style>
+       
+        </style>
     </head>
-    <body>
-        {% block body %}{% endblock %}
+    <body> 
+        {% block body %}
+		   {% include('inc/navbar.html.twig') %}
+
+		{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
 </html>
