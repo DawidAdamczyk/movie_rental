@@ -1,13 +1,20 @@
  {% block sidebar %}
-<div class="nav">
-	<div class="nav-title">
-		<h1>Movie Rental</h1>
-	</div>
+	<nav class="navbar navbar-expand-md navbar-light bg-light">
+    {# <a href="#" class="navbar-brand">Brand</a> #}
+    {# <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button> #}
 
-	<div class="nav-menu">
-		<ul>
-			<li><a href="/login">Login</a></li>
-		</ul>
-	</div>
-</div>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav">
+            <a href="#" class="nav-item nav-link">Home</a>
+        </div>
+        <div class="navbar-nav ml-auto">
+            <a href="#" class="nav-item nav-link">Login</a>
+            <a href="#" class="nav-item nav-link">Sign In</a>
+        </div>
+
+		
+    </div>
+</nav>
 {% endblock %}

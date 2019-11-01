@@ -1,4 +1,4 @@
-*{
+/* *{
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
@@ -53,7 +53,7 @@ a {
 
 /*style for responsive menu*/
 
-@media screen and (max-width:1000px){
+/* @media screen and (max-width:1000px){
    .nav{
        height: auto;
    }
@@ -79,4 +79,4 @@ a {
 
 .login-page {
     text-align: center;
-}
+} */ */
