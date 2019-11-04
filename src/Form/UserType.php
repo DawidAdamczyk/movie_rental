@@ -19,12 +19,12 @@ class UserType extends AbstractType
             ->add('email', EmailType::class)
             ->add('name', TextType::class)
             ->add('lastname', TextType::class)
-            ->add('password', TextType::class)
-            // ->add('plainPassword', RepeatedType::class, array(
-            //     'type' => PasswordType::class,
-            //     'first_options'  => array('label' => 'Password'),
-            //     'second_options' => array('label' => 'Repeat Password'),
-            // ))
+            // ->add('password', TextType::class)
+            ->add('password', RepeatedType::class, array(
+                'type' => PasswordType::class,
+                'first_options'  => array('label' => 'Password'),
+                'second_options' => array('label' => 'Repeat Password'),
+            ))
             ->add('card_number', TextType::class)
             ->add('blocked', TextType::class)
         ;

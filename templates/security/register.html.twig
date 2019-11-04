@@ -1,14 +1,20 @@
 {% extends 'base.html.twig' %}
-
+{% block stylesheets %}
+ {{ encore_entry_link_tags('app') }}
+        {% endblock %}
 {% block body %}
-    {{ form_start(form) }}
-    {{ form_row(form.name) }}
-    {{ form_row(form.lastname) }}
-    {{ form_row(form.email) }}
-    {{ form_row(form.password) }}
-    {{ form_row(form.card_number) }}
-    {{ form_row(form.blocked) }}
 
-    <button type="submit">Register!</button>
+  {{ form_start(form) }}
+  <div class="form-group mt-4">
+    {{ form_row(form.email, {'attr': {'class': 'form-control mt-2'}}) }}
+    {{ form_row(form.name, {'attr': {'class': 'form-control mt-2'}}) }}
+    {{ form_row(form.lastname, {'attr': {'class': 'form-control mt-2'}}) }}
+    {{ form_row(form.password.first, {'attr': {'class': 'form-control mt-2'}}) }}
+    {{ form_row(form.password.second, {'attr': {'class': 'form-control mt-2'}}) }}
+    {{ form_row(form.card_number, {'attr': {'class': 'form-control mt-2'}}) }}
+    {{ form_row(form.blocked, {'attr': {'class': 'form-control mt-2'}}) }}
+     <button class="mt-2" type="submit">Register!</button>
+  </div>
+
 {{ form_end(form) }}
 {% endblock %}
