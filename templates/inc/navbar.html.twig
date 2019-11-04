@@ -10,8 +10,15 @@
             <a href="#" class="nav-item nav-link">Home</a>
         </div>
         <div class="navbar-nav ml-auto">
+            {% if app.user %}
+                <div class="mb-3">
+                    {# You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a> #}
+                    <a href="{{ path('app_logout') }}">Logout</a>
+                </div>
+            {% else %}
             <a href="#" class="nav-item nav-link">Login</a>
             <a href="#" class="nav-item nav-link">Sign In</a>
+            {% endif %}
         </div>
 
 		
