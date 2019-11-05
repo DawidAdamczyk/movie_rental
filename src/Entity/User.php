@@ -51,7 +51,7 @@ class User implements UserInterface
     private $card_number;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", options={"default":false})
      */
     private $blocked;
 
@@ -59,6 +59,11 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity="App\Entity\Loan", mappedBy="user", orphanRemoval=true)
      */
     private $loans;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $birth_date;
 
     public function __construct()
     {
@@ -218,6 +223,18 @@ class User implements UserInterface
                 $loan->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getBirthDate(): ?\DateTimeInterface
+    {
+        return $this->birth_date;
+    }
+
+    public function setBirthDate(\DateTimeInterface $birth_date): self
+    {
+        $this->birth_date = $birth_date;
 
         return $this;
     }

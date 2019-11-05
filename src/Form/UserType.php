@@ -27,6 +27,7 @@ class UserType extends AbstractType
             ))
             ->add('card_number', TextType::class)
             ->add('blocked', TextType::class)
+            ->add('birth_date', TextType::class)
         ;
     }
 

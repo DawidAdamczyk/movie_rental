@@ -12,7 +12,7 @@ require('../css/app.scss');
 // const $ = require('jquery');
 const $ = require('jquery');
 
-// global.$ = global.jQuery = $;
+ global.$ = global.jQuery = $;
 // this "modifies" the jquery module: adding behavior to it
 // the bootstrap module doesn't export/return anything
 require('bootstrap');
