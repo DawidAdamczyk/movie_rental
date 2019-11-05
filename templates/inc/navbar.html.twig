@@ -7,17 +7,18 @@
 
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav">
-            <a href="#" class="nav-item nav-link">Home</a>
+            <a href="/" class="nav-item nav-link">Home</a>
         </div>
         <div class="navbar-nav ml-auto">
             {% if app.user %}
                 <div class="mb-3">
-                    {# You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a> #}
+                    <a href="/user/{{app.user.id}}">{{app.user.name}}</a>
+                    {# You are logged in as {{ app.user.id }}, <a href="{{ path('app_logout') }}">Logout</a> #}
                     <a href="{{ path('app_logout') }}">Logout</a>
                 </div>
             {% else %}
-            <a href="#" class="nav-item nav-link">Login</a>
-            <a href="#" class="nav-item nav-link">Sign In</a>
+            <a href="/login" class="nav-item nav-link">Login</a>
+            <a href="/register" class="nav-item nav-link">Registration</a>
             {% endif %}
         </div>
 
