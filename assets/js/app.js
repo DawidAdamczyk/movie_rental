@@ -16,7 +16,12 @@ const $ = require('jquery');
 // this "modifies" the jquery module: adding behavior to it
 // the bootstrap module doesn't export/return anything
 require('bootstrap');
-
+require('webpack-jquery-ui');
+require('webpack-jquery-ui/css');
+require('webpack-jquery-ui/widgets');
+require('webpack-jquery-ui/datepicker');
+//  require('jquery-ui/ui/widgets/datepicker');
+// require("jquery-ui/datepicker")
 // or you can include specific pieces
 // require('bootstrap/js/dist/tooltip');
 // require('bootstrap/js/dist/popover');
