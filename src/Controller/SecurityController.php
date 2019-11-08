@@ -32,12 +32,14 @@ class SecurityController extends AbstractController
         // 1) build the form
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
-
+        // if ($request->isMethod('POST')) {
+        //     $form->submit($request->request->get($form->getName()));
+        // }
         // 2) handle the submit (will only happen on POST)
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-
-            // 3) Encode the password (you could also do this via Doctrine listener)
+            // $request->request('birth_date');
+            // $user->setEmail($request->request('birth_date'));
             $password = $passwordEncoder->encodePassword($user, $user->getPassword());
             $user->setPassword($password);
 

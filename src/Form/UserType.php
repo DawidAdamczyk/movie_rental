@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class UserType extends AbstractType
 {
@@ -27,7 +28,9 @@ class UserType extends AbstractType
             ))
             ->add('card_number', TextType::class)
             ->add('blocked', TextType::class)
-            ->add('birth_date', TextType::class)
+            ->add('birth_date', DateType::class, array(
+                'widget' => 'single_text',
+            ))
         ;
     }
 
