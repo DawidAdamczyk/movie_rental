@@ -13,4 +13,8 @@ app_register:
 user_index:
    path: /user/{id}
    controller: App\Controller\UserController::index
+
+user_edit:
+   path: /user/{id}/edit
+   controller: App\Controller\UserController::edit
    

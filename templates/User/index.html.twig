@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+        <link href="{{ asset('css/navbar.css') }}" rel="stylesheet"/>
+        <link href="{{ asset('css/user.css') }}" rel="stylesheet"/>
+        {{ encore_entry_link_tags('app') }}
+{% endblock %}
+
+{% block body %}
+
+<table class="table">
+  <tbody>
+    <tr>
+      <td>Imię i Nazwisko</td>
+      <td>{{user.name }} {{ user.lastname }}</td>
+    </tr>
+    <tr>
+      <td>Email</td>
+      <td>{{ user.email }}</td>
+    </tr>
+    <tr>
+      <td>Moje filmy</td>
+      <td><a href="/{{user.id}}/movies">Filmy</a></td>
+    </tr>
+    <tr>
+      <td>historia wypożyczeń</td>
+      <td><a href="/{{user.id}}/history">Historia</a></td>
+    </tr>
+     <tr>
+      <td>Ulubione</td>
+      <td><a href="/{{user.id}}/favorite">Ulubione</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<a class="btn btn-primary float-right mr-3" href="/user/{{user.id}}/edit" role="button">Edytuj</a>
+
+{% endblock %}
