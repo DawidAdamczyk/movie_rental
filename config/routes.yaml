@@ -17,4 +17,12 @@ user_index:
 user_edit:
    path: /user/{id}/edit
    controller: App\Controller\UserController::edit
+
+movies_list:
+   path: /movies
+   controller: App\Controller\MovieController::list
+
+movie_show:
+   path: /movie/{id}
+   controller: App\Controller\MovieController::show
    

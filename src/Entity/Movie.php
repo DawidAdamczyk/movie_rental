@@ -78,6 +78,16 @@ class Movie
      */
     private $loans;
 
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $sale_price_day;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $sale_price_seanse;
+
     public function __construct()
     {
         $this->loans = new ArrayCollection();
@@ -247,6 +257,30 @@ class Movie
                 $loan->setMovie(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSalePriceDay(): ?float
+    {
+        return $this->sale_price_day;
+    }
+
+    public function setSalePriceDay(?float $sale_price_day): self
+    {
+        $this->sale_price_day = $sale_price_day;
+
+        return $this;
+    }
+
+    public function getSalePriceSeanse(): ?float
+    {
+        return $this->sale_price_seanse;
+    }
+
+    public function setSalePriceSeanse(?float $sale_price_seanse): self
+    {
+        $this->sale_price_seanse = $sale_price_seanse;
 
         return $this;
     }
