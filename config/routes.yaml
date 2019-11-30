@@ -25,4 +25,18 @@ movies_list:
 movie_show:
    path: /movie/{id}
    controller: App\Controller\MovieController::show
+   methods:    GET|HEAD
+
+add_loan:
+   path: /loan/create
+   controller: App\Controller\LoanController::create
+   methods:    POST
+
+user_movies:
+   path: /user/{id}/movies
+   controller: App\Controller\UserController::movies
+
+user_history:
+   path: /user/{id}/history
+   controller: App\Controller\UserController:history
    

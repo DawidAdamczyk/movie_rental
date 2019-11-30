@@ -4,6 +4,7 @@
 {% endblock %}
   
 {% block body %}
+
   <table class="table">
     <tr>
       <td>title: {{movie.title}}</td>
@@ -16,9 +17,19 @@
       <td>duration: {{movie.duration}}</td>
     </tr>
     <tr>
-      <td>sale:     {{movie.description}}</td>
-      <td>price day: {{movie.priceDay}}</td>
+      <td>description:     {{movie.description}}</td>
+
+      {% if not movie.salePriceDay %}
+        <td>price day: {{movie.priceDay}}</td>
+      {% else %}
+         <td>price on day from {{movie.priceDay}} on {{movie.salePriceDay}} </td>
+      {% endif %}
+
+      {% if not movie.salePriceSeanse %}
       <td>price seanse: {{movie.priceSeanse}}</td>
+      {% else %}
+      <td>price on seanse from {{movie.priceSeanse}} on {{movie.salePriceSeanse}} </td>
+      {% endif %}
     </tr>
     <tr>
       <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
@@ -38,9 +49,11 @@
         </button>
       </div>
       <div class="modal-body">
-       <form action="/movie/{{movie.id}}" method="post">
-          Sale Day: <input type="text" id="price_day" name="Day"><br>
+       <form action="/loan/create" method="post">
+          Sale Day: <input type="text" id="price_day" name="day"><br>
           Sale Seanse:  <input type="text" id="price_seanse" name="seanse"><br>
+           <input type="hidden"  name="movie_id" value="{{movie.id}}">
+           <input type="hidden"  name="user_id" value="{{app.user.id}}">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

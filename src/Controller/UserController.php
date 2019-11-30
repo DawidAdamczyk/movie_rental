@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use App\Entity\User;
+use App\Entity\Loan;
 use App\Form\UserType;
 use App\Form\UserEditType;
 
@@ -65,5 +66,39 @@ class UserController extends AbstractController
         }
 
         return $this->render('User/edit.html.twig', ['user' => $user, 'form' =>  $form->createView()]);
+    }
+
+    public function movies($id)
+    {
+        $repository = $this->getDoctrine()->getRepository(Loan::class);
+
+        $loans = $repository->findBy(['user' => $id]);
+
+        $activeLoan = [];
+
+        $i = 0;
+
+        foreach ($loans as $loan) {
+
+            $usableTime = $loan->getUsableUntil();
+            dump($usableTime);
+            $screenings = $loan->getNumberScreenings();
+
+            if ($usableTime > date('Y-m-d') || $screenings > 0) {
+                $activeLoan[$i] = $loan;
+                $i++;
+            }
+        }
+
+        return $this->render('User/movies.html.twig', ['movies' => $activeLoan]);
+    }
+
+    public function history($id)
+    {
+        $repository = $this->getDoctrine()->getRepository(Loan::class);
+
+        $loans = $repository->findBy(['user' => $id]);
+
+        return $this->render('User/movies.html.twig', ['movies' => $loans]);
     }
 }
