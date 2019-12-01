@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets%}
+  {{ encore_entry_link_tags('app') }}
+{% endblock %}
+  
+{% block body %}
+<table class="table">
+{% for movie in movies %}
+    <tr>
+      <td class="border-1"><a href="/movie/{{movie.id}}">title: {{movie.title}}</a></td>
+      <td>premiere: {{movie.premiere.date}}</td>
+    </tr>
+    </a>
+    {% endfor %}
+</table>
+    {# {% for movie in movies %}
+     {{movie.title}}
+    {% endfor %} #}
+{% endblock %}

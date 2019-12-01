@@ -27,6 +27,14 @@ movie_show:
    controller: App\Controller\MovieController::show
    methods:    GET|HEAD
 
+movie_previews:
+   path: /previews
+   controller: App\Controller\MovieController::previews
+
+movie_release:
+   path: /release
+   controller: App\Controller\MovieController::release
+
 add_loan:
    path: /loan/create
    controller: App\Controller\LoanController::create
@@ -39,4 +47,6 @@ user_movies:
 user_history:
    path: /user/{id}/history
    controller: App\Controller\UserController:history
+
+
    

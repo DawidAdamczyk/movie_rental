@@ -81,7 +81,6 @@ class UserController extends AbstractController
         foreach ($loans as $loan) {
 
             $usableTime = $loan->getUsableUntil();
-            dump($usableTime);
             $screenings = $loan->getNumberScreenings();
 
             if ($usableTime > date('Y-m-d') || $screenings > 0) {
