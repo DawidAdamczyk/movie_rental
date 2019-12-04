@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 use App\Entity\User;
 use App\Entity\Loan;
 use App\Form\UserType;
@@ -35,7 +36,7 @@ class UserController extends AbstractController
          
     }
 
-    public function edit(int $id, Request $request, User $user)
+    public function edit(int $id, Request $request, ValidatorInterface $validator)
     {
         if (!$this->getUser()) {
             return $this->redirectToRoute('index');
@@ -48,6 +49,7 @@ class UserController extends AbstractController
         // $user = new User();
         $form = $this->createForm(UserEditType::class);
 
+        
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
@@ -56,7 +58,7 @@ class UserController extends AbstractController
             $user->setName($data['name']);
             $user->setLastname($data['lastname']);
             $user->getCardNumber($data['card_number']);
-            $user->setBirthDate($data['birth_date']);
+            // $user->setBirthDate($data['birth_date']);
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
@@ -70,6 +72,10 @@ class UserController extends AbstractController
 
     public function movies($id)
     {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('index');
+         }
+        
         $repository = $this->getDoctrine()->getRepository(Loan::class);
 
         $loans = $repository->findBy(['user' => $id]);
@@ -94,10 +100,32 @@ class UserController extends AbstractController
 
     public function history($id)
     {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('index');
+        }
+
         $repository = $this->getDoctrine()->getRepository(Loan::class);
 
         $loans = $repository->findBy(['user' => $id]);
 
         return $this->render('User/movies.html.twig', ['movies' => $loans]);
+    }
+
+    public function watch($userId, $movieId)
+    {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('index');
+        }
+
+        $repository = $this->getDoctrine()->getRepository(Loan::class);
+
+        $loan = $repository->findOneBy(['user' => $userId, 'movie' => $movieId]);
+    
+        $number = $loan->getNumberScreenings();
+        if ($number > 0) {
+            $number = $number -1;
+        }
+
+        return $this->render('User/watch.html.twig');
     }
 }

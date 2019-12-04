@@ -10,6 +10,7 @@
       <tr>
         <td class="border-1">title: {{movie.movie.title}}</td>
         <td>premiere: {{movie.movie.premiere.date}}</td>
+        <td><a class="btn btn-primary" href="/user/{{app.user.id}}/movies/{{movie.movie.id}}/watch" role="button">Watch!</a></td>
       </tr>
   {% endfor %}
 {% else %}

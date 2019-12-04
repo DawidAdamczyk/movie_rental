@@ -48,5 +48,9 @@ user_history:
    path: /user/{id}/history
    controller: App\Controller\UserController:history
 
+user_watch:
+   path: /user/{userId}/movies/{movieId}/watch
+   controller: App\Controller\UserController:watch
+
 
    
