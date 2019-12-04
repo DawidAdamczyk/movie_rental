@@ -19,32 +19,30 @@ class MovieRepository extends ServiceEntityRepository
         parent::__construct($registry, Movie::class);
     }
 
-    // /**
-    //  * @return Movie[] Returns an array of Movie objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    
+    public function findByDateAfterNow()
     {
-        return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('m.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        $entityMenager =  $this->getEntityManager(); 
+        $query = $entityMenager->createQuery('
+             SELECT p
+             FROM App\Entity\Movie p
+             WHERE  p.premiere > :premiere
+         ')->setParameter('premiere', date('Y-m-d'));
 
-    /*
-    public function findOneBySomeField($value): ?Movie
-    {
-        return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+         return $query->getResult();
     }
-    */
+
+    public function findByRelease()
+    {
+        $entityMenager =  $this->getEntityManager(); 
+        
+        $query = $entityMenager->createQuery('
+             SELECT p
+             FROM App\Entity\Movie p
+             WHERE  p.premiere > :premiere
+         ')->setParameter('premiere', date('Y-m-d', strtotime('now  + 7 days')));
+
+         return $query->getResult();
+    }
+    
 }

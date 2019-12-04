@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets%}
+  {{ encore_entry_link_tags('app') }}
+{% endblock %}
+  
+{% block body %}
+
+  <table class="table">
+    <tr>
+      <td>title: {{movie.title}}</td>
+      <td>genre: {{movie.genre}}</td>
+      <td>age: {{movie.viewerAge}}</td>
+    </tr>
+    <tr>
+      <td>director: {{movie.director}}</td>
+      <td>premiere: {{movie.premiere.date}}</td>
+      <td>duration: {{movie.duration}}</td>
+    </tr>
+    <tr>
+      <td>description:     {{movie.description}}</td>
+
+      {% if not movie.salePriceDay %}
+        <td>price day: {{movie.priceDay}}</td>
+      {% else %}
+         <td>price on day from {{movie.priceDay}} on {{movie.salePriceDay}} </td>
+      {% endif %}
+
+      {% if not movie.salePriceSeanse %}
+      <td>price seanse: {{movie.priceSeanse}}</td>
+      {% else %}
+      <td>price on seanse from {{movie.priceSeanse}} on {{movie.salePriceSeanse}} </td>
+      {% endif %}
+    </tr>
+    <tr>
+      <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Buy
+      </button>
+      </td>
+      <td><input id="toggle-heart" type="checkbox" />
+          <label for="toggle-heart">❤</label>
+      </td>
+    </tr>
+</table>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <form action="/loan/create" method="post">
+          Sale Day: <input type="text" id="price_day" name="day"><br>
+          Sale Seanse:  <input type="text" id="price_seanse" name="seanse"><br>
+           <input type="hidden"  name="movie_id" value="{{movie.id}}">
+           <input type="hidden"  name="user_id" value="{{app.user.id}}">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Buy</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+  {{ encore_entry_script_tags('app') }}
+   <script src="{{ asset('js/buy.js') }}"></script>
+{% endblock %}

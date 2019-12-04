@@ -1,0 +1,31 @@
+ {% block sidebar %}
+	<nav class="navbar navbar-expand-md navbar-light bg-light">
+    {# <a href="#" class="navbar-brand">Brand</a> #}
+    {# <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button> #}
+
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav">
+            <a href="/" class="nav-item nav-link">Home</a>
+            <a href="/movies" class="nav-item nav-link">Movies</a>
+            <a href="/previews" class="nav-item nav-link">Previews</a>
+            <a href="/release" class="nav-item nav-link">Release</a>
+        </div>
+        <div class="navbar-nav ml-auto">
+            {% if app.user %}
+                <div>
+                    <a class="mr-1" href="/user/{{app.user.id}}">{{app.user.name}}</a>
+                    {# You are logged in as {{ app.user.id }}, <a href="{{ path('app_logout') }}">Logout</a> #}
+                    <a href="{{ path('app_logout') }}">Logout</a>
+                </div>
+            {% else %}
+            <a href="/login" class="nav-item nav-link">Login</a>
+            <a href="/register" class="nav-item nav-link">Registration</a>
+            {% endif %}
+        </div>
+
+		
+    </div>
+</nav>
+{% endblock %}

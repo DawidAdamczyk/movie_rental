@@ -78,9 +78,25 @@ class Movie
      */
     private $loans;
 
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $sale_price_day;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $sale_price_seanse;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Favorite", mappedBy="movie", orphanRemoval=true)
+     */
+    private $favorites;
+
     public function __construct()
     {
         $this->loans = new ArrayCollection();
+        $this->favorites = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -245,6 +261,61 @@ class Movie
             // set the owning side to null (unless already changed)
             if ($loan->getMovie() === $this) {
                 $loan->setMovie(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getSalePriceDay(): ?float
+    {
+        return $this->sale_price_day;
+    }
+
+    public function setSalePriceDay(?float $sale_price_day): self
+    {
+        $this->sale_price_day = $sale_price_day;
+
+        return $this;
+    }
+
+    public function getSalePriceSeanse(): ?float
+    {
+        return $this->sale_price_seanse;
+    }
+
+    public function setSalePriceSeanse(?float $sale_price_seanse): self
+    {
+        $this->sale_price_seanse = $sale_price_seanse;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Favorite[]
+     */
+    public function getFavorites(): Collection
+    {
+        return $this->favorites;
+    }
+
+    public function addFavorite(Favorite $favorite): self
+    {
+        if (!$this->favorites->contains($favorite)) {
+            $this->favorites[] = $favorite;
+            $favorite->setMovie($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavorite(Favorite $favorite): self
+    {
+        if ($this->favorites->contains($favorite)) {
+            $this->favorites->removeElement($favorite);
+            // set the owning side to null (unless already changed)
+            if ($favorite->getMovie() === $this) {
+                $favorite->setMovie(null);
             }
         }
 

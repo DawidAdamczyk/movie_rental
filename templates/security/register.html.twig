@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+ {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+{% block body %}
+
+  {{ form_start(form) }}
+  <div class="form-group mt-4">
+    {{ form_row(form.email, {'attr': {'class': 'form-control mt-2'}}) }}
+    {{ form_row(form.name, {'attr': {'class': 'form-control mt-2'}}) }}
+    {{ form_row(form.lastname, {'attr': {'class': 'form-control mt-2'}}) }}
+    {{ form_row(form.password.first, {'attr': {'class': 'form-control mt-2'}}) }}
+    {{ form_row(form.password.second, {'attr': {'class': 'form-control mt-2'}}) }}
+    {{ form_row(form.card_number, {'attr': {'class': 'form-control mt-2'}}) }}
+    {{ form_row(form.blocked, {'attr': {'class': 'form-control mt-2'}}) }}
+    {{ form_row(form.birth_date, {'attr': {'class': 'form-control mt-2', 'id': 'datepicker'}})}}
+    <body>
+
+{# <p>Date: <input type="text" id="datepicker" class="hasDatepicker"></p> #}
+    
+     <button class="mt-2" type="submit">Register!</button>
+  </div>
+
+{{ form_end(form) }}
+
+{% endblock %}
+{% block javascripts %} {{ encore_entry_script_tags('app') }}
+
+{# <script>
+$('#user_birth_date').datepicker();
+</script> #}
+
+{% endblock %}
+    

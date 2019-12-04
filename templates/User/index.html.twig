@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+        <link href="{{ asset('css/navbar.css') }}" rel="stylesheet"/>
+        <link href="{{ asset('css/user.css') }}" rel="stylesheet"/>
+        {{ encore_entry_link_tags('app') }}
+{% endblock %}
+
+{% block body %}
+
+<table class="table">
+  <tbody>
+    <tr>
+      <td>Name and lastname</td>
+      <td>{{user.name }} {{ user.lastname }}</td>
+    </tr>
+    <tr>
+      <td>Email</td>
+      <td>{{ user.email }}</td>
+    </tr>
+    <tr>
+      <td>My Movies</td>
+      <td><a href="{{user.id}}/movies">Movies</a></td>
+    </tr>
+    <tr>
+      <td>My History</td>
+      <td><a href="{{user.id}}/history">History</a></td>
+    </tr>
+     <tr>
+      <td>My favorite</td>
+      <td><a href="/{{user.id}}/favorite">Favorite</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<a class="btn btn-primary float-right mr-3" href="/user/{{user.id}}/edit" role="button">Edytuj</a>
+
+{% endblock %}

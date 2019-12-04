@@ -1,3 +1,56 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+index:
+   path: /
+   controller: App\Controller\BasicController::index
+
+app_login:
+   path: /login
+   controller: App\Controller\SecurityController::login
+
+app_register:
+   path: /register
+   controller: App\Controller\SecurityController::register 
+
+user_index:
+   path: /user/{id}
+   controller: App\Controller\UserController::index
+
+user_edit:
+   path: /user/{id}/edit
+   controller: App\Controller\UserController::edit
+
+movies_list:
+   path: /movies
+   controller: App\Controller\MovieController::list
+
+movie_show:
+   path: /movie/{id}
+   controller: App\Controller\MovieController::show
+   methods:    GET|HEAD
+
+movie_previews:
+   path: /previews
+   controller: App\Controller\MovieController::previews
+
+movie_release:
+   path: /release
+   controller: App\Controller\MovieController::release
+
+add_loan:
+   path: /loan/create
+   controller: App\Controller\LoanController::create
+   methods:    POST
+
+user_movies:
+   path: /user/{id}/movies
+   controller: App\Controller\UserController::movies
+
+user_history:
+   path: /user/{id}/history
+   controller: App\Controller\UserController:history
+
+user_watch:
+   path: /user/{userId}/movies/{movieId}/watch
+   controller: App\Controller\UserController:watch
+
+
+   

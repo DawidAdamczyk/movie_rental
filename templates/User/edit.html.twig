@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+ {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+{% block body %}
+   {{ form_start(form) }}
+  <div class="form-group mt-4">
+    {{ form_row(form.email, {'attr': {'class': 'form-control mt-2', 'value': user.email}}) }}
+    {{ form_row(form.name, {'attr': {'class': 'form-control mt-2', 'value': user.name}}) }}
+    {{ form_row(form.lastname, {'attr': {'class': 'form-control mt-2', 'value': user.lastname}}) }}
+    {{ form_row(form.card_number, {'attr': {'class': 'form-control mt-2', 'value': user.cardnumber}}) }}
+     <button class="mt-2" type="submit">Register!</button>
+  </div>
+
+{{ form_end(form) }}
+{% endblock %}

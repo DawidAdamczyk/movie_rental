@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets%}
+  {{ encore_entry_link_tags('app') }}
+{% endblock %}
+  
+{% block body %}
+<table class="table">
+{% if movies %}
+  {% for movie in movies %}
+      <tr>
+        <td class="border-1">title: {{movie.movie.title}}</td>
+        <td>premiere: {{movie.movie.premiere.date}}</td>
+        <td><a class="btn btn-primary" href="/user/{{app.user.id}}/movies/{{movie.movie.id}}/watch" role="button">Watch!</a></td>
+      </tr>
+  {% endfor %}
+{% else %}
+<tr><td>There is not movies :(</td></tr>
+{% endif %}
+</table>
+{% endblock %}
